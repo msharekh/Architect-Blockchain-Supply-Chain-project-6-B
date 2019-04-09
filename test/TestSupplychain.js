@@ -253,13 +253,13 @@ contract('SupplyChain', function(accounts) {
     });
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
-    const fetchMsg = await supplyChain.fetchMsg.call(upc);
     const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
-
+    /* 
+    const fetchMsg = await supplyChain.fetchMsg.call(upc);
     console.log('msg.sender', ':	', fetchMsg[0]);
     console.log('msg.value', ':	', fetchMsg[1].toNumber());
-
+    */
     // console.log('paidValue ', ':	', resultBufferTwo[9].toNumber());
 
     // Verify the result set
@@ -286,45 +286,72 @@ contract('SupplyChain', function(accounts) {
   });
   // */
 
-  // 6th Test
-  /*  it("Testing smart contract function shipItem() that allows a distributor to ship coffee", async() => {
-        const supplyChain = await SupplyChain.deployed()
-        
-        // Declare and Initialize a variable for event
-        
-        
-        // Watch the emitted event Shipped()
-        
+  // 6th Test SHIP ITEM
+  // /*
+  it('Testing smart contract function shipItem() that allows a distributor to ship coffee', async () => {
+    // Declare and Initialize a variable for event
+    const supplyChain = await SupplyChain.deployed();
 
-        // Mark an item as Sold by calling function buyItem()
-        
+    // Watch the emitted event Shipped()
+    var event = supplyChain.Shipped();
+    await event.watch((err, res) => {
+      eventEmitted = true;
+    });
 
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+    // Mark an item as Shipped by calling function shipItem()
+    await supplyChain.shipItem(upc);
 
-        // Verify the result set
-              
-    })    */
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
-  // 7th Test
-  /*  it("Testing smart contract function receiveItem() that allows a retailer to mark coffee received", async() => {
-        const supplyChain = await SupplyChain.deployed()
-        
-        // Declare and Initialize a variable for event
-        
-        
-        // Watch the emitted event Received()
-        
+    // Verify the result set
+    console.log('State', ':	SHIP ITEM ', resultBufferTwo[5].toNumber());
+    assert.equal(resultBufferTwo[5].toNumber(), 5, 'Error: Invalid item State');
+    console.log('emitted', ':	', eventEmitted);
+    assert.equal(eventEmitted, true, 'Invalid event emitted');
+  });
+  // */
 
-        // Mark an item as Sold by calling function buyItem()
-        
+  // 7th Test RECEIVE ITEM
+  // /*
+  it('Testing smart contract function receiveItem() that allows a retailer to mark coffee received', async () => {
+    // Declare and Initialize a variable for event
+    const supplyChain = await SupplyChain.deployed();
 
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+    // Watch the emitted event Received()
+    var event = supplyChain.Received();
+    await event.watch((err, res) => {
+      eventEmitted = true;
+    });
 
-        // Verify the result set
-             
-    }) */
+    // Mark an item as received by calling function receiveItem()
+
+    await supplyChain.receiveItem(upc, {
+      from: retailerID
+    });
+
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
+
+    // Verify the result set
+
+    console.log('ownerID ', ':	', resultBufferOne[2]);
+    assert.equal(resultBufferOne[2], retailerID, 'Error: Invalid item ownerID');
+
+    console.log('retailerID ', ':	', resultBufferTwo[7]);
+    assert.equal(
+      resultBufferTwo[7],
+      retailerID,
+      'Error: Invalid item retailerID'
+    );
+
+    console.log('State', ':	RECEIVE ITEM ', resultBufferTwo[5].toNumber());
+    assert.equal(resultBufferTwo[5].toNumber(), 6, 'Error: Invalid item State');
+    console.log('emitted', ':	', eventEmitted);
+    assert.equal(eventEmitted, true, 'Invalid event emitted');
+  });
+  // */
 
   // 8th Test
   /* it("Testing smart contract function purchaseItem() that allows a consumer to purchase coffee", async() => {
