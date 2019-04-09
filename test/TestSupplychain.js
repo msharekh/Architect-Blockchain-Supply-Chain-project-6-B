@@ -353,45 +353,64 @@ contract('SupplyChain', function(accounts) {
   });
   // */
 
-  // 8th Test
-  /* it("Testing smart contract function purchaseItem() that allows a consumer to purchase coffee", async() => {
-        const supplyChain = await SupplyChain.deployed()
-        
-        // Declare and Initialize a variable for event
-        
-        
-        // Watch the emitted event Purchased()
-        
+  // 8th Test PURCHASE ITEM
+  // /*
+  it('Testing smart contract function purchaseItem() that allows a consumer to purchase coffee', async () => {
+    // Declare and Initialize a variable for event
+    const supplyChain = await SupplyChain.deployed();
 
-        // Mark an item as Sold by calling function buyItem()
-        
+    // Watch the emitted event Purchased()
+    var event = supplyChain.Received();
+    await event.watch((err, res) => {
+      eventEmitted = true;
+    });
 
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+    // Mark an item as purchased by calling function purchaseItem()
+    await supplyChain.purchaseItem(upc, {
+      from: consumerID
+    });
 
-        // Verify the result set
-        
-    })  */
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
+
+    // Verify the result set
+    console.log('ownerID ', ':	', resultBufferOne[2]);
+    assert.equal(resultBufferOne[2], consumerID, 'Error: Invalid item ownerID');
+
+    console.log('consumerID ', ':	', resultBufferTwo[8]);
+    assert.equal(
+      resultBufferTwo[8],
+      consumerID,
+      'Error: Invalid item consumerID'
+    );
+
+    console.log('State', ':	PURCHASE ITEM ', resultBufferTwo[5].toNumber());
+    assert.equal(resultBufferTwo[5].toNumber(), 7, 'Error: Invalid item State');
+    console.log('emitted', ':	', eventEmitted);
+    assert.equal(eventEmitted, true, 'Invalid event emitted');
+  });
+  // */
 
   // 9th Test
-  /* it("Testing smart contract function fetchItemBufferOne() that allows anyone to fetch item details from blockchain", async() => {
-        const supplyChain = await SupplyChain.deployed()
+  // /*
+  it('Testing smart contract function fetchItemBufferOne() that allows anyone to fetch item details from blockchain', async () => {
+    const supplyChain = await SupplyChain.deployed();
 
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
-        
-        // Verify the result set:
-        
-    }) */
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+
+    // Verify the result set:
+  });
+  // */
 
   // 10th Test
-  /*  it("Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain", async() => {
-        const supplyChain = await SupplyChain.deployed()
+  // /*
+  it('Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain', async () => {
+    const supplyChain = await SupplyChain.deployed();
 
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
-        
-        // Verify the result set:
-        
-    }) */
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+
+    // Verify the result set:
+  });
+  // */
 });
