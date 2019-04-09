@@ -15,6 +15,7 @@ uint  sku;
 // Define a public mapping 'items' that maps the UPC to an Item.
 mapping (uint => Item) items;
 
+uint paidValue;
 // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash, 
 // that track its journey through the supply chain -- to be sent from DApp.
 
@@ -170,7 +171,7 @@ function harvestItem(uint _upc, address _originFarmerID, string _originFarmName,
 {
 // Add the new item as part of Harvest
 
-items[_upc]=Item({ sku:sku,upc:_upc,ownerID:owner,originFarmerID:_originFarmerID,originFarmName:_originFarmName,originFarmInformation:_originFarmInformation,originFarmLatitude:_originFarmLatitude,originFarmLongitude:_originFarmLongitude,productID:0,productNotes:_productNotes,productPrice:0,itemState:State.Harvested,distributorID:0,retailerID:0,consumerID:0});
+items[_upc]=Item({ sku:sku,upc:_upc,ownerID:_originFarmerID,originFarmerID:_originFarmerID,originFarmName:_originFarmName,originFarmInformation:_originFarmInformation,originFarmLatitude:_originFarmLatitude,originFarmLongitude:_originFarmLongitude,productID:0,productNotes:_productNotes,productPrice:0,itemState:State.Harvested,distributorID:0,retailerID:0,consumerID:0});
 
 // Increment sku
 sku = sku + 1;
@@ -227,7 +228,7 @@ emit ForSale(_upc);
 // Define a function 'buyItem' that allows the disributor to mark an item 'Sold'
 // Use the above defined modifiers to check if the item is available for sale, if the buyer has paid enough, 
 // and any excess ether sent is refunded back to the buyer
-function buyItem(uint _upc,uint _price) forSale(_upc) paidEnough(_price) checkValue(_upc) public payable 
+function buyItem(uint _upc,uint _price) forSale(_upc)  public payable 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // Call modifer to check if buyer has paid enough
@@ -241,8 +242,10 @@ items[_upc].ownerID = msg.sender;
 items[_upc].distributorID = msg.sender;
 items[_upc].itemState = State.Sold;
 
+paidValue = msg.value;
+
 // Transfer money to farmer
-msg.sender.transfer(_price);
+// msg.sender.transfer(_price);
 
 // emit the appropriate event
 emit Sold(_upc);
@@ -311,15 +314,15 @@ function fetchItemBufferOne(uint _upc) public view returns
 	) 
 {
 // Assign values to the 8 parameters
-itemSKU = items[_upc].sku;
-itemUPC = items[_upc].upc;
-ownerID = items[_upc].ownerID;
-originFarmerID = items[_upc].originFarmerID;
+itemSKU = items[_upc].sku;//0
+itemUPC = items[_upc].upc;//1
+ownerID = items[_upc].ownerID;//2
+originFarmerID = items[_upc].originFarmerID;//3
 
-originFarmName = items[_upc].originFarmName;
-originFarmInformation = items[_upc].originFarmInformation;
-originFarmLatitude = items[_upc].originFarmLatitude;
-originFarmLongitude = items[_upc].originFarmLongitude;
+originFarmName = items[_upc].originFarmName;//4
+originFarmInformation = items[_upc].originFarmInformation;//5
+originFarmLatitude = items[_upc].originFarmLatitude;//6
+originFarmLongitude = items[_upc].originFarmLongitude;//7
 
 return 
 (
@@ -345,21 +348,24 @@ function fetchItemBufferTwo(uint _upc) public view returns
 	uint    itemState,
 	address distributorID,
 	address retailerID,
-	address consumerID
+	address consumerID,
+    uint    paidValue
 	) 
 {
 // Assign values to the 9 parameters
-itemSKU = items[_upc].sku;
-itemUPC = items[_upc].upc;
-productID = items[_upc].productID;
-productNotes = items[_upc].productNotes;
-productPrice = items[_upc].productPrice;
+itemSKU = items[_upc].sku; //0
+itemUPC = items[_upc].upc; //1
+productID = items[_upc].productID; //2
+productNotes = items[_upc].productNotes; //3
 
-itemState = uint(items[_upc].itemState);
-distributorID = items[_upc].distributorID;
-retailerID = items[_upc].retailerID;
-consumerID = items[_upc].consumerID;
+productPrice = items[_upc].productPrice; //4
+itemState = uint(items[_upc].itemState); //5
+distributorID = items[_upc].distributorID; //6
+retailerID = items[_upc].retailerID; //7
 
+consumerID = items[_upc].consumerID; //8
+
+paidValue = msg.value; //9
 return 
 (
 	itemSKU,
@@ -370,8 +376,28 @@ return
 	itemState,
 	distributorID,
 	retailerID,
-	consumerID
+	consumerID,
+	paidValue
 	);
+}
+
+// Define a function 'fetchItemBufferOne' that fetches the data
+function fetchMsg() public view returns 
+(
+	address    msgSender,
+	uint    msgValue
+) 
+{
+// Assign values to the 8 parameters
+msgSender = msg.sender;//0
+msgValue = msg.value;//1
+ 
+ 
+return 
+(
+	msgSender,
+	msgValue
+);
 }
 
 // event test_value(uint256 indexed value1);

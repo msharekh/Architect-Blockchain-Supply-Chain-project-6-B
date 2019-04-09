@@ -50,14 +50,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610149806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063112940f91461005c57806361e6982d1461009f578063834ff739146100b6575b600080fd5b34801561006857600080fd5b5061009d600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610111565b005b3480156100ab57600080fd5b506100b4610114565b005b3480156100c257600080fd5b506100f7600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610116565b604051808215151515815260200191505060405180910390f35b50565b565b60009190505600a165627a7a72305820c0acba5bf4476b106042738405c080eb99a9c8b850d18669a9edaeac2971e4020029",
-  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063112940f91461005c57806361e6982d1461009f578063834ff739146100b6575b600080fd5b34801561006857600080fd5b5061009d600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610111565b005b3480156100ab57600080fd5b506100b4610114565b005b3480156100c257600080fd5b506100f7600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610116565b604051808215151515815260200191505060405180910390f35b50565b565b60009190505600a165627a7a72305820c0acba5bf4476b106042738405c080eb99a9c8b850d18669a9edaeac2971e4020029",
+  "bytecode": "0x608060405234801561001057600080fd5b50610149806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063112940f91461005c57806361e6982d1461009f578063834ff739146100b6575b600080fd5b34801561006857600080fd5b5061009d600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610111565b005b3480156100ab57600080fd5b506100b4610114565b005b3480156100c257600080fd5b506100f7600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610116565b604051808215151515815260200191505060405180910390f35b50565b565b60009190505600a165627a7a7230582093fb8fac1fcf81158798191db8952612238f7c0998d85abc9de39dc20a47c87b0029",
+  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063112940f91461005c57806361e6982d1461009f578063834ff739146100b6575b600080fd5b34801561006857600080fd5b5061009d600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610111565b005b3480156100ab57600080fd5b506100b4610114565b005b3480156100c257600080fd5b506100f7600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610116565b604051808215151515815260200191505060405180910390f35b50565b565b60009190505600a165627a7a7230582093fb8fac1fcf81158798191db8952612238f7c0998d85abc9de39dc20a47c87b0029",
   "sourceMap": "156:1106:1:-;;;412:31;8:9:-1;5:2;;;30:1;27;20:12;5:2;412:31:1;156:1106;;;;;;",
   "deployedSourceMap": "156:1106:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;763:68;;8:9:-1;5:2;;;30:1;27;20:12;5:2;763:68:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;899:45;;8:9:-1;5:2;;;30:1;27;20:12;5:2;899:45:1;;;;;;628:74;;8:9:-1;5:2;;;30:1;27;20:12;5:2;628:74:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;763:68;;:::o;899:45::-;:::o;628:74::-;686:4;628:74;;;:::o",
   "source": "pragma solidity ^0.4.24;\n\n// Import the library 'Roles'\nimport \"./Roles.sol\";\n\n// Define a contract 'ConsumerRole' to manage this role - add, remove, check\ncontract ConsumerRole {\n\n  // Define 2 events, one for Adding, and other for Removing\n\n  // Define a struct 'consumers' by inheriting from 'Roles' library, struct Role\n\n  // In the constructor make the address that deploys this contract the 1st consumer\n  constructor() public {\n    \n  }\n\n  // Define a modifier that checks to see if msg.sender has the appropriate role\n  modifier onlyConsumer() {\n    \n    _;\n  }\n\n  // Define a function 'isConsumer' to check this role\n  function isConsumer(address account) public view returns (bool) {\n    \n  }\n\n  // Define a function 'addConsumer' that adds this role\n  function addConsumer(address account) public onlyConsumer {\n    \n  }\n\n  // Define a function 'renounceConsumer' to renounce this role\n  function renounceConsumer() public {\n    \n  }\n\n  // Define an internal function '_addConsumer' to add this role, called by 'addConsumer'\n  function _addConsumer(address account) internal {\n    \n  }\n\n  // Define an internal function '_removeConsumer' to remove this role, called by 'removeConsumer'\n  function _removeConsumer(address account) internal {\n    \n  }\n}",
-  "sourcePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/Project 6 B/nd1309-Project-6b-Example-Template/project-6/contracts/coffeeaccesscontrol/ConsumerRole.sol",
+  "sourcePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/project-6-Architect a Blockchain Supply Chain Solution-Part B/contracts/coffeeaccesscontrol/ConsumerRole.sol",
   "ast": {
-    "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/Project 6 B/nd1309-Project-6b-Example-Template/project-6/contracts/coffeeaccesscontrol/ConsumerRole.sol",
+    "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/project-6-Architect a Blockchain Supply Chain Solution-Part B/contracts/coffeeaccesscontrol/ConsumerRole.sol",
     "exportedSymbols": {
       "ConsumerRole": [
         100
@@ -78,7 +78,7 @@
         "src": "0:24:1"
       },
       {
-        "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/Project 6 B/nd1309-Project-6b-Example-Template/project-6/contracts/coffeeaccesscontrol/Roles.sol",
+        "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/project-6-Architect a Blockchain Supply Chain Solution-Part B/contracts/coffeeaccesscontrol/Roles.sol",
         "file": "./Roles.sol",
         "id": 59,
         "nodeType": "ImportDirective",
@@ -494,7 +494,7 @@
     "src": "0:1262:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/Project 6 B/nd1309-Project-6b-Example-Template/project-6/contracts/coffeeaccesscontrol/ConsumerRole.sol",
+    "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/project-6-Architect a Blockchain Supply Chain Solution-Part B/contracts/coffeeaccesscontrol/ConsumerRole.sol",
     "exportedSymbols": {
       "ConsumerRole": [
         100
@@ -515,7 +515,7 @@
         "src": "0:24:1"
       },
       {
-        "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/Project 6 B/nd1309-Project-6b-Example-Template/project-6/contracts/coffeeaccesscontrol/Roles.sol",
+        "absolutePath": "/Users/msharekh/Google Drive/Blockchain Developer Nanodegree/Term 2/project-6-Architect a Blockchain Supply Chain Solution-Part B/contracts/coffeeaccesscontrol/Roles.sol",
         "file": "./Roles.sol",
         "id": 59,
         "nodeType": "ImportDirective",
@@ -932,7 +932,7 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.25+commit.59dbf8f1.Emscripten.clang"
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
     "1552726938443": {
@@ -952,8 +952,14 @@
       "links": {},
       "address": "0x2932bcbf1fbad1862eb61ea3f32d0a13717f5969",
       "transactionHash": "0x4f641720d1d186995ccf9a8f7572f75fcf9390b6ed18ced006286c279f1d525f"
+    },
+    "1554838204896": {
+      "events": {},
+      "links": {},
+      "address": "0xce76cda9ffea4f74069734fbd813b0f553d94609",
+      "transactionHash": "0x8f0b55f923e1762663a573662a189ad6e3382ce04c708910123ffea1c2408fe1"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2019-03-30T12:05:25.752Z"
+  "updatedAt": "2019-04-09T20:26:24.075Z"
 }
