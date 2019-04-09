@@ -145,7 +145,7 @@ contract('SupplyChain', function(accounts) {
     );
     // */
     // /*
-    console.log('State', ':	', resultBufferTwo[5].toNumber());
+    console.log('State', ':	HARVEST ITEM ', resultBufferTwo[5].toNumber());
     assert.equal(resultBufferTwo[5], 0, 'Error: Invalid item State');
     console.log('emitted', ':	', eventEmitted);
     assert.equal(eventEmitted, true, 'Invalid event emitted');
@@ -168,7 +168,7 @@ contract('SupplyChain', function(accounts) {
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
     // Verify the result set
-    console.log('State', ':	', resultBufferTwo[5].toNumber());
+    console.log('State', ':	PROCESS ITEM ', resultBufferTwo[5].toNumber());
     assert.equal(resultBufferTwo[5].toNumber(), 1, 'Error: Invalid item State');
     console.log('emitted', ':	', eventEmitted);
     assert.equal(eventEmitted, true, 'Invalid event emitted');
@@ -193,7 +193,7 @@ contract('SupplyChain', function(accounts) {
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
     // Verify the result set
-    console.log('State', ':	', resultBufferTwo[5].toNumber());
+    console.log('State', ':	PACK ITEM ', resultBufferTwo[5].toNumber());
     assert.equal(resultBufferTwo[5].toNumber(), 2, 'Error: Invalid item State');
     console.log('emitted', ':	', eventEmitted);
     assert.equal(eventEmitted, true, 'Invalid event emitted');
@@ -219,7 +219,7 @@ contract('SupplyChain', function(accounts) {
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
     // Verify the result set
-    console.log('State', ':	', resultBufferTwo[5].toNumber());
+    console.log('State', ':	SELL ITEM ', resultBufferTwo[5].toNumber());
     assert.equal(resultBufferTwo[5].toNumber(), 3, 'Error: Invalid item State');
 
     console.log('product Price', ':	', resultBufferTwo[4].toNumber());
@@ -247,32 +247,42 @@ contract('SupplyChain', function(accounts) {
     });
 
     // Mark an item as Sold by calling function buyItem()
-    await supplyChain.buyItem(upc, productPrice);
+    await supplyChain.buyItem(upc, productPrice, {
+      from: distributorID,
+      value: productPrice
+    });
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
-    const fetchMsg = await supplyChain.fetchMsg.call();
+    const fetchMsg = await supplyChain.fetchMsg.call(upc);
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
     console.log('msg.sender', ':	', fetchMsg[0]);
     console.log('msg.value', ':	', fetchMsg[1].toNumber());
 
-    console.log('paidValue ', ':	', resultBufferTwo[9].toNumber());
+    // console.log('paidValue ', ':	', resultBufferTwo[9].toNumber());
 
     // Verify the result set
-    // assert.equal(resultBufferTwo[5].toNumber(), 4, 'Error: Invalid item State');
 
-    // console.log('ownerID ', ':	', resultBufferOne[2]());
-    // assert.equal(resultBufferOne[2], ownerID, 'Error: Invalid item ownerID');
+    console.log('State', ':	BUY ITEM ', resultBufferTwo[5].toNumber());
+    assert.equal(resultBufferTwo[5].toNumber(), 4, 'Error: Invalid item State');
 
-    // console.log('distributorID ', ':	', resultBufferTwo[6]());
-    // assert.equal(
-    //   resultBufferTwo[6],
-    //   ownerID,
-    //   'Error: Invalid item distributorID'
-    // );
+    console.log('ownerID ', ':	', resultBufferOne[2]);
+    assert.equal(
+      resultBufferOne[2],
+      distributorID,
+      'Error: Invalid item ownerID'
+    );
 
-    // console.log('emitted', ':	', eventEmitted);
-    // assert.equal(eventEmitted, true, 'Invalid event emitted');
+    console.log('distributorID ', ':	', resultBufferTwo[6]);
+    assert.equal(
+      resultBufferTwo[6],
+      distributorID,
+      'Error: Invalid item distributorID'
+    );
+
+    console.log('emitted', ':	', eventEmitted);
+    assert.equal(eventEmitted, true, 'Invalid event emitted');
   });
   // */
 

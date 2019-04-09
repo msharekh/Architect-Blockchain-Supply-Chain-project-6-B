@@ -228,7 +228,7 @@ emit ForSale(_upc);
 // Define a function 'buyItem' that allows the disributor to mark an item 'Sold'
 // Use the above defined modifiers to check if the item is available for sale, if the buyer has paid enough, 
 // and any excess ether sent is refunded back to the buyer
-function buyItem(uint _upc,uint _price) forSale(_upc)  public payable 
+function buyItem(uint _upc,uint _price) forSale(_upc) paidEnough(_price) checkValue(_upc)  public payable 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // Call modifer to check if buyer has paid enough
@@ -245,7 +245,7 @@ items[_upc].itemState = State.Sold;
 paidValue = msg.value;
 
 // Transfer money to farmer
-// msg.sender.transfer(_price);
+msg.sender.transfer(_price);
 
 // emit the appropriate event
 emit Sold(_upc);
@@ -382,7 +382,7 @@ return
 }
 
 // Define a function 'fetchItemBufferOne' that fetches the data
-function fetchMsg() public view returns 
+function fetchMsg(uint _upc) public view returns 
 (
 	address    msgSender,
 	uint    msgValue
