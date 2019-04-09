@@ -67,92 +67,92 @@ event Purchased(uint upc);
 
 // Define a modifer that checks to see if msg.sender == owner of the contract
 modifier onlyOwner() {
-require(msg.sender == owner);
-_;
+	require(msg.sender == owner);
+	_;
 }
 
 // Define a modifer that verifies the Caller
 modifier verifyCaller (address _address) {
-require(msg.sender == _address); 
-_;
+	require(msg.sender == _address); 
+	_;
 }
 
 // Define a modifier that checks if the paid amount is sufficient to cover the price
 modifier paidEnough(uint _price) { 
-require(msg.value >= _price); 
-_;
+	require(msg.value >= _price); 
+	_;
 }
 
 // Define a modifier that checks the price and refunds the remaining balance
 modifier checkValue(uint _upc) {
-_;
-uint _price = items[_upc].productPrice;
-uint amountToReturn = msg.value - _price;
-items[_upc].consumerID.transfer(amountToReturn);
+	_;
+	uint _price = items[_upc].productPrice;
+	uint amountToReturn = msg.value - _price;
+	items[_upc].consumerID.transfer(amountToReturn);
 }
 
 // Define a modifier that checks if an item.state of a upc is Harvested
 modifier harvested(uint _upc) {
-require(items[_upc].itemState == State.Harvested);
-_;
+	require(items[_upc].itemState == State.Harvested);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Processed
 modifier processed(uint _upc) {
-require(items[_upc].itemState== State.Processed);
-_;
+	require(items[_upc].itemState== State.Processed);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Packed
 modifier packed(uint _upc) {
-require(items[_upc].itemState== State.Packed);
-_;
+	require(items[_upc].itemState== State.Packed);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is ForSale
 modifier forSale(uint _upc) {
-require(items[_upc].itemState== State.ForSale);
-_;
+	require(items[_upc].itemState== State.ForSale);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Sold
 modifier sold(uint _upc) {
-require(items[_upc].itemState== State.Sold);
-_;
+	require(items[_upc].itemState== State.Sold);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Shipped
 modifier shipped(uint _upc) {
-require(items[_upc].itemState== State.Shipped);
-_;
+	require(items[_upc].itemState== State.Shipped);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Received
 modifier received(uint _upc) {
-require(items[_upc].itemState== State.Received);
-_;
+	require(items[_upc].itemState== State.Received);
+	_;
 }
 
 // Define a modifier that checks if an item.state of a upc is Purchased
 modifier purchased(uint _upc) {
-require(items[_upc].itemState== State.Purchased);
-_;
+	require(items[_upc].itemState== State.Purchased);
+	_;
 }
 
 // In the constructor set 'owner' to the address that instantiated the contract
 // and set 'sku' to 1
 // and set 'upc' to 1
 constructor() public payable {
-    owner = msg.sender;
-    sku = 1;
-    upc = 1;
+	owner = msg.sender;
+	sku = 1;
+	upc = 1;
 }
 
 // Define a function 'kill' if required
 function kill() public {
-if (msg.sender == owner) {
-selfdestruct(owner);
-}
+	if (msg.sender == owner) {
+		selfdestruct(owner);
+	}
 }
 
 /* 
@@ -300,15 +300,15 @@ items[_upc].itemState = State.Purchased;
 // Define a function 'fetchItemBufferOne' that fetches the data
 function fetchItemBufferOne(uint _upc) public view returns 
 (
-uint    itemSKU,
-uint    itemUPC,
-address ownerID,
-address originFarmerID,
-string  originFarmName,
-string  originFarmInformation,
-string  originFarmLatitude,
-string  originFarmLongitude
-) 
+	uint    itemSKU,
+	uint    itemUPC,
+	address ownerID,
+	address originFarmerID,
+	string  originFarmName,
+	string  originFarmInformation,
+	string  originFarmLatitude,
+	string  originFarmLongitude
+	) 
 {
 // Assign values to the 8 parameters
 itemSKU = items[_upc].sku;
@@ -323,30 +323,30 @@ originFarmLongitude = items[_upc].originFarmLongitude;
 
 return 
 (
-itemSKU,
-itemUPC,
-ownerID,
-originFarmerID,
-originFarmName,
-originFarmInformation,
-originFarmLatitude,
-originFarmLongitude
-);
+	itemSKU,
+	itemUPC,
+	ownerID,
+	originFarmerID,
+	originFarmName,
+	originFarmInformation,
+	originFarmLatitude,
+	originFarmLongitude
+	);
 }
 
 // Define a function 'fetchItemBufferTwo' that fetches the data
 function fetchItemBufferTwo(uint _upc) public view returns 
 (
-uint    itemSKU,
-uint    itemUPC,
-uint    productID,
-string  productNotes,
-uint    productPrice,
-uint    itemState,
-address distributorID,
-address retailerID,
-address consumerID
-) 
+	uint    itemSKU,
+	uint    itemUPC,
+	uint    productID,
+	string  productNotes,
+	uint    productPrice,
+	uint    itemState,
+	address distributorID,
+	address retailerID,
+	address consumerID
+	) 
 {
 // Assign values to the 9 parameters
 itemSKU = items[_upc].sku;
@@ -362,16 +362,16 @@ consumerID = items[_upc].consumerID;
 
 return 
 (
-itemSKU,
-itemUPC,
-productID,
-productNotes,
-productPrice,
-itemState,
-distributorID,
-retailerID,
-consumerID
-);
+	itemSKU,
+	itemUPC,
+	productID,
+	productNotes,
+	productPrice,
+	itemState,
+	distributorID,
+	retailerID,
+	consumerID
+	);
 }
 
 // event test_value(uint256 indexed value1);
