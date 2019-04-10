@@ -398,8 +398,55 @@ contract('SupplyChain', function(accounts) {
     const supplyChain = await SupplyChain.deployed();
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
     // Verify the result set:
+    console.log('sku', ':	', resultBufferOne[0].toNumber());
+    assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU'); //SKU
+
+    console.log('upc', ':	', resultBufferOne[1].toNumber());
+    assert.equal(resultBufferOne[1], upc, 'Error: Invalid item UPC'); //UPC
+
+    // */
+    // /*
+    console.log('originFarmerID', ':	', resultBufferOne[3]);
+    assert.equal(
+      resultBufferOne[3],
+      originFarmerID,
+      'Error: Missing or Invalid originFarmerID'
+    );
+    // */
+    // /*
+    console.log('originFarmName', ':	', resultBufferOne[4]);
+    assert.equal(
+      resultBufferOne[4],
+      originFarmName,
+      'Error: Missing or Invalid originFarmName'
+    );
+    // */
+    // /*
+    console.log('originFarmInformation', ':	', resultBufferOne[5]);
+    assert.equal(
+      resultBufferOne[5],
+      originFarmInformation,
+      'Error: Missing or Invalid originFarmInformation'
+    );
+    // */
+    // /*
+    console.log('originFarmLatitude', ':	', resultBufferOne[6]);
+    assert.equal(
+      resultBufferOne[6],
+      originFarmLatitude,
+      'Error: Missing or Invalid originFarmLatitude'
+    );
+    // */
+    // /*
+    console.log('originFarmLongitude', ':	', resultBufferOne[7]);
+    assert.equal(
+      resultBufferOne[7],
+      originFarmLongitude,
+      'Error: Missing or Invalid originFarmLongitude'
+    );
+    // */
   });
   // */
 
@@ -409,8 +456,57 @@ contract('SupplyChain', function(accounts) {
     const supplyChain = await SupplyChain.deployed();
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
     // Verify the result set:
+
+    console.log('productID ', ':	', resultBufferTwo[2].toNumber());
+    assert.equal(
+      resultBufferTwo[2].toNumber(),
+      productID,
+      'Error: Invalid item productID'
+    );
+
+    console.log('productNotes ', ':	', resultBufferTwo[3]);
+    assert.equal(
+      resultBufferTwo[3],
+      productNotes,
+      'Error: Invalid item productNotes'
+    );
+
+    console.log('productPrice ', ':	', resultBufferTwo[4].toNumber());
+    assert.equal(
+      resultBufferTwo[4].toNumber(),
+      productPrice,
+      'Error: Invalid item productPrice'
+    );
+
+    console.log('distributorID ', ':	', resultBufferTwo[6]);
+    assert.equal(
+      resultBufferTwo[6],
+      distributorID,
+      'Error: Invalid item distributorID'
+    );
+
+    console.log('retailerID ', ':	', resultBufferTwo[7]);
+    assert.equal(
+      resultBufferTwo[7],
+      retailerID,
+      'Error: Invalid item retailerID'
+    );
+
+    console.log('consumerID ', ':	', resultBufferTwo[8]);
+    assert.equal(
+      resultBufferTwo[8],
+      consumerID,
+      'Error: Invalid item consumerID'
+    );
+
+    console.log('retailerID ', ':	', resultBufferTwo[7]);
+    assert.equal(
+      resultBufferTwo[7],
+      retailerID,
+      'Error: Invalid item retailerID'
+    );
   });
   // */
 });

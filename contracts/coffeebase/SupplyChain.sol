@@ -171,7 +171,7 @@ function harvestItem(uint _upc, address _originFarmerID, string _originFarmName,
 {
 // Add the new item as part of Harvest
 
-items[_upc]=Item({ sku:sku,upc:_upc,ownerID:_originFarmerID,originFarmerID:_originFarmerID,originFarmName:_originFarmName,originFarmInformation:_originFarmInformation,originFarmLatitude:_originFarmLatitude,originFarmLongitude:_originFarmLongitude,productID:0,productNotes:_productNotes,productPrice:0,itemState:State.Harvested,distributorID:0,retailerID:0,consumerID:0});
+items[_upc]=Item({ sku:sku,upc:_upc,ownerID:_originFarmerID,originFarmerID:_originFarmerID,originFarmName:_originFarmName,originFarmInformation:_originFarmInformation,originFarmLatitude:_originFarmLatitude,originFarmLongitude:_originFarmLongitude,productID:sku+upc,productNotes:_productNotes,productPrice:0,itemState:State.Harvested,distributorID:0,retailerID:0,consumerID:0});
 
 // Increment sku
 sku = sku + 1;
