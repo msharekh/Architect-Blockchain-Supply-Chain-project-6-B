@@ -324,6 +324,9 @@ App = {
 
     App.contracts.SupplyChain.deployed()
       .then(function(instance) {
+        $('#ftc-logs').append(
+          '<li>-------------FETCH ITEM BUFFER ONE-------------------</li>'
+        );
         return instance.fetchItemBufferOne(App.upc);
       })
       .then(function(result) {
@@ -356,8 +359,19 @@ App = {
   fetchItemBufferTwo: function() {
     ///    event.preventDefault();
     ///    var processId = parseInt($(event.target).data('id'));
-
     App.contracts.SupplyChain.deployed()
+      .then(function(instance) {
+        $('#ftc-logs').html(
+          '<li>-------------FETCH ITEM BUFFER TWO-------------------</li>'
+        );
+        // var events = instance.allEvents(function(err, log) {
+        //   if (!err)
+        //     $('#ftc-logs').append(
+        //       '<li>' + log.event + ' - ' + log.transactionHash + '</li>'
+        //     );
+        // });
+        return instance;
+      })
       .then(function(instance) {
         return instance.fetchItemBufferTwo.call(App.upc);
       })
@@ -374,6 +388,7 @@ App = {
         $('#ftc-logs').append(
           '<li>productID :	' + result[2].toNumber() + '</li>'
         );
+
         $('#ftc-logs').append('<li>productNotes :	' + result[3] + '</li>');
         $('#ftc-logs').append(
           '<li>productPrice :	' + result[4].toNumber() + '</li>'
