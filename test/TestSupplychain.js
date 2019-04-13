@@ -479,7 +479,7 @@ contract('SupplyChain', function(accounts) {
       productPrice,
       'Error: Invalid item productPrice'
     );
-
+    console.log('State', ': ', resultBufferTwo[5].toNumber());
     console.log('distributorID ', ':	', resultBufferTwo[6]);
     assert.equal(
       resultBufferTwo[6],
@@ -499,13 +499,6 @@ contract('SupplyChain', function(accounts) {
       resultBufferTwo[8],
       consumerID,
       'Error: Invalid item consumerID'
-    );
-
-    console.log('retailerID ', ':	', resultBufferTwo[7]);
-    assert.equal(
-      resultBufferTwo[7],
-      retailerID,
-      'Error: Invalid item retailerID'
     );
   });
   // */

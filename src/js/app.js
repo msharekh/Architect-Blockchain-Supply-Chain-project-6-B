@@ -124,6 +124,7 @@ App = {
   handleButtonClick: async function(event) {
     event.preventDefault();
 
+    //get current Metask Account ID
     App.getMetaskAccountID();
 
     var processId = parseInt($(event.target).data('id'));
@@ -250,7 +251,7 @@ App = {
     App.contracts.SupplyChain.deployed()
       .then(function(instance) {
         const walletValue = web3.toWei(3, 'ether');
-        return instance.buyItem(App.upc, {
+        return instance.buyItem(App.upc, App.productPrice, {
           from: App.metamaskAccountID,
           value: walletValue
         });
@@ -327,6 +328,24 @@ App = {
       })
       .then(function(result) {
         $('#ftc-item').text(result);
+        console.log('sku', ':	', result[0].toNumber());
+        console.log('upc', ':	', result[1].toNumber());
+        console.log('originFarmerID', ':	', result[3]);
+        console.log('originFarmName', ':	', result[4]);
+        console.log('originFarmInformation', ':	', result[5]);
+        console.log('originFarmLatitude', ':	', result[6]);
+        console.log('originFarmLongitude', ':	', result[7]);
+
+        $('#ftc-logs').append('<li>sku:	' + result[0].toNumber() + '</li>');
+        $('#ftc-logs').append('<li>upc:	' + result[1].toNumber() + '</li>');
+        $('#ftc-logs').append('<li>originFarmerID:	' + result[3] + '</li>');
+        $('#ftc-logs').append('<li>originFarmName:	' + result[4] + '</li>');
+        $('#ftc-logs').append(
+          '<li>originFarmInformation:	' + result[5] + '</li>'
+        );
+        $('#ftc-logs').append('<li>originFarmLatitude:	' + result[6] + '</li>');
+        $('#ftc-logs').append('<li>originFarmLongitude:	' + result[7] + '</li>');
+
         console.log('fetchItemBufferOne', result);
       })
       .catch(function(err) {
@@ -344,6 +363,29 @@ App = {
       })
       .then(function(result) {
         $('#ftc-item').text(result);
+        console.log('productID ', ':	', result[2].toNumber());
+        console.log('productNotes ', ':	', result[3]);
+        console.log('productPrice ', ':	', result[4].toNumber());
+        console.log('state', ': ', result[5].toNumber());
+        console.log('distributorID ', ':	', result[6]);
+        console.log('retailerID ', ':	', result[7]);
+        console.log('consumerID ', ':	', result[8]);
+
+        $('#ftc-logs').append(
+          '<li>productID :	' + result[2].toNumber() + '</li>'
+        );
+        $('#ftc-logs').append('<li>productNotes :	' + result[3] + '</li>');
+        $('#ftc-logs').append(
+          '<li>productPrice :	' + result[4].toNumber() + '</li>'
+        );
+        $('#ftc-logs').append(
+          '<li>state',
+          ': ',
+          result[5].toNumber() + '</li>'
+        );
+        $('#ftc-logs').append('<li>distributorID :	' + result[6] + '</li>');
+        $('#ftc-logs').append('<li>retailerID :	' + result[7] + '</li>');
+        $('#ftc-logs').append('<li>consumerID :	' + result[8] + '</li>');
         console.log('fetchItemBufferTwo', result);
       })
       .catch(function(err) {

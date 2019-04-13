@@ -253,7 +253,7 @@ emit Sold(_upc);
 
 // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
 // Use the above modifers to check if the item is sold
-function shipItem(uint _upc) sold(_upc) verifyCaller(owner) public 
+function shipItem(uint _upc)  public 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // Call modifier to verify caller of this function
