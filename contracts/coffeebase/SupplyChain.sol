@@ -297,7 +297,7 @@ items[_upc].ownerID = msg.sender;
 items[_upc].consumerID = msg.sender;
 items[_upc].itemState = State.Purchased;
 // Emit the appropriate event
-
+emit Purchased(_upc);
 }
 
 // Define a function 'fetchItemBufferOne' that fetches the data
