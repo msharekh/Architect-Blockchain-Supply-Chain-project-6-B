@@ -1,6 +1,6 @@
-var HDWalletProvider = require('truffle-hdwallet-provider');
-// const infuraKey = '<Infura PROJECT ID>';
-var mnemonic =
+let HDWalletProvider = require('truffle-hdwallet-provider');
+let infuraKey = '2dcdc64520ac497481d2fd701b1c9641';
+let mnemonic =
   'uphold picnic age aunt sheriff embody dune gauge merit hero purse innocent';
 
 module.exports = {
@@ -12,17 +12,25 @@ module.exports = {
     },
     rinkeby: {
       provider: function() {
-        return new HDWalletProvider(
-          mnemonic,
-          'rinkeby.infura.io/v3/40e4f2f4d71b4ca2971de016062f5846'
-        );
+        return new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/' + infuraKey);
       },
       // from: '0x66178bd1f010b4bF530203f90f889b599874fF84',
       network_id: 4,
       gas: 4500000,
       gasPrice: 10000000000
     }
-  }
+  } /* ,
+  compilers: {
+    solc: {
+      version: '0.4.24',
+      settings: {
+        optimizer: {
+          enabled: false,
+          runs: 200
+        }
+      }
+    }
+  } */
 };
 
 // const HDWalletProvider = require('truffle-hdwallet-provider');
