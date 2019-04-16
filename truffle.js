@@ -12,14 +12,28 @@ module.exports = {
     },
     rinkeby: {
       provider: function() {
-        return new HDWalletProvider(mnemonic, 'rinkeby.infura.io/' + infuraKey);
+        return new HDWalletProvider(
+          mnemonic,
+          'https://rinkeby.infura.io/v3/' + infuraKey
+        );
       },
       // from: '0x66178bd1f010b4bF530203f90f889b599874fF84',
       network_id: 4,
       gas: 4500000,
       gasPrice: 10000000000
     }
-  }
+  } /* ,
+  compilers: {
+    solc: {
+      version: '0.4.24',
+      settings: {
+        optimizer: {
+          enabled: false,
+          runs: 200
+        }
+      }
+    }
+  } */
 };
 
 // const HDWalletProvider = require('truffle-hdwallet-provider');
