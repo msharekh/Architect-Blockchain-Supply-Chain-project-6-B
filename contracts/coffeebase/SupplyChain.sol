@@ -1,7 +1,9 @@
 pragma solidity ^0.4.24;
 // Define a contract 'Supplychain'
 
-contract SupplyChain {
+import "../coffeeaccesscontrol/DistributorRole.sol";
+
+contract SupplyChain is DistributorRole {
 
 // Define 'owner'
 address owner;
@@ -124,6 +126,8 @@ modifier sold(uint _upc) {
 
 // Define a modifier that checks if an item.state of a upc is Shipped
 modifier shipped(uint _upc) {
+
+	//check that it is shipped
 	require(items[_upc].itemState== State.Shipped);
 	_;
 }
@@ -156,6 +160,9 @@ function kill() public {
 	}
 }
 
+function addDistributor(address distributorID) {
+	DistributorRole distributor=new DistributorRole();
+}
 /* 
 Harvested,  // 0
 Processed,  // 1
@@ -253,7 +260,7 @@ emit Sold(_upc);
 
 // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
 // Use the above modifers to check if the item is sold
-function shipItem(uint _upc)  public 
+function shipItem(uint _upc)  onlyDistributor() public 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // Call modifier to verify caller of this function
