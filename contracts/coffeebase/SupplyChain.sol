@@ -356,7 +356,7 @@ function fetchItemBufferTwo(uint _upc) public view returns
 	address distributorID,
 	address retailerID,
 	address consumerID,
-    uint    paidValue
+	uint    paidValue
 	) 
 {
 // Assign values to the 9 parameters
@@ -393,18 +393,18 @@ function fetchMsg(uint _upc) public view returns
 (
 	address    msgSender,
 	uint    msgValue
-) 
+	) 
 {
 // Assign values to the 8 parameters
 msgSender = msg.sender;//0
 msgValue = msg.value;//1
- 
- 
+
+
 return 
 (
 	msgSender,
 	msgValue
-);
+	);
 }
 
 // event test_value(uint256 indexed value1);
