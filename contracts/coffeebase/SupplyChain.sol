@@ -190,6 +190,7 @@ function harvestItem(uint _upc, address _originFarmerID, string _originFarmName,
 
 items[_upc]=Item({ sku:sku,upc:_upc,ownerID:_originFarmerID,originFarmerID:_originFarmerID,originFarmName:_originFarmName,originFarmInformation:_originFarmInformation,originFarmLatitude:_originFarmLatitude,originFarmLongitude:_originFarmLongitude,productID:sku+upc,productNotes:_productNotes,productPrice:0,itemState:State.Harvested,distributorID:0,retailerID:0,consumerID:0});
 
+
 // Increment sku
 sku = sku + 1;
 // Emit the appropriate event
@@ -286,7 +287,7 @@ emit Shipped(_upc);
 
 // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
 // Use the above modifiers to check if the item is shipped
-function receiveItem(uint _upc) shipped(_upc) public 
+function receiveItem(uint _upc) shipped(_upc) onlyRetailer() public 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // TODO: Access Control List enforced by calling Smart Contract / DApp
@@ -304,7 +305,7 @@ emit Received(_upc);
 
 // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
 // Use the above modifiers to check if the item is received
-function purchaseItem(uint _upc) received(upc) public 
+function purchaseItem(uint _upc) received(upc) onlyConsumer() public 
 // Call modifier to check if upc has passed previous supply chain stage
 
 // TODO: Access Control List enforced by calling Smart Contract / DApp

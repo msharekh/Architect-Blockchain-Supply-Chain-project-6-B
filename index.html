@@ -109,7 +109,7 @@
                 class="form-control"
                 id="newConsumerID"
                 name="newConsumerID"
-                value="0x460c31107dd048e34971e57da2f99f659add4f02"
+                value="0xd37b7b8c62be2fdde8daa9816483aebdbd356088"
                 size="50"
               />
               <button type="button" class="btn btn-info" data-id="14">
@@ -172,7 +172,7 @@
         <!-- col-md-4 -->
 
         <div class="col-md-4">
-          <h2>Farm Details</h2>
+          <h2>Farmer Stage</h2>
           <div class="form-group">
             Farmer ID
             <br />
@@ -189,15 +189,16 @@
               type="text"
               id="originFarmName"
               name="originFarmName"
-              value="Farm Name??"
+              value="Greenwell Kona Coffee"
             /><br />
             Farm Information
             <br />
             <input
+              style="width:100%;"
               type="text"
               id="originFarmInformation"
               name="originFarmInformation"
-              value="Farm Information??"
+              value="The Greenwell Farms legacy began in 1850 when Henry Nicholas Greenwell left England and first set foot on the fertile soil of rural Kona."
             /><br />
             Farm Latitude
             <br />
@@ -215,6 +216,15 @@
               name="originFarmLongitude"
               value="144.341490"
             /><br />
+            Product Notes
+            <br />
+            <input
+              type="text"
+              id="productNotes"
+              name="productNotes"
+              value="Best beans for Espresso"
+              size="60"
+            /><br />
             <br />
             <button class="btn-harvest" id="button" type="button" data-id="1">
               Harvest
@@ -229,27 +239,20 @@
               ForSale
             </button>
           </div>
+          <!-- form-group -->
         </div>
         <!-- col-md-4 -->
         <div class="col-md-4">
-          <h2>Product Details</h2>
+          <h2>Distributor Stage</h2>
           <div class="form-group">
-            Product Notes
-            <br />
-            <input
-              type="text"
-              id="productNotes"
-              name="productNotes"
-              value="Best beans for Espresso"
-              size="60"
-            /><br />
+            
             Product Price
             <br />
             <input
               type="number"
               id="productPrice"
               name="productPrice"
-              value="1"
+              value="2"
             />ETH<br />
             Distributor ID
             <br />
@@ -260,7 +263,16 @@
               value="0xce5144391b4ab80668965f2cc4f2cc102380ef0a"
               size="50"
             />
-            <br />
+
+            <button class="btn-buy" id="button" type="button" data-id="5">
+              Buy
+            </button>
+            <button class="btn-ship" id="button" type="button" data-id="6">
+              Ship
+            </button>
+          </div>
+          <!-- form-group -->
+          <div class="form-group">
             Retailer ID
             <br />
             <input
@@ -270,6 +282,12 @@
               value="0x460c31107dd048e34971e57da2f99f659add4f02"
               size="50"
             /><br />
+            <button class="btn-receive" id="button" type="button" data-id="7">
+              Receive
+            </button>
+          </div>
+          <!-- form-group -->
+          <div class="form-group">
             Consumer ID
             <br />
             <input
@@ -280,19 +298,11 @@
               size="50"
             /><br />
             <br />
-            <button class="btn-buy" id="button" type="button" data-id="5">
-              Buy
-            </button>
-            <button class="btn-ship" id="button" type="button" data-id="6">
-              Ship
-            </button>
-            <button class="btn-receive" id="button" type="button" data-id="7">
-              Receive
-            </button>
             <button class="btn-purchase" id="button" type="button" data-id="8">
               Purchase
             </button>
           </div>
+          <!-- form-group -->
         </div>
         <!-- 
         const distributorID = accounts[2];  0xce5144391b4ab80668965f2cc4f2cc102380ef0a

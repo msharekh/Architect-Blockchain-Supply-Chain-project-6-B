@@ -53,6 +53,69 @@ contract('SupplyChain', function(accounts) {
   console.log('ProductPrice: ', productPrice);
   console.log('itemState: ', itemState); */
 
+  /*******ADDING ROLES**********/
+  // 11rd Test ---- ADD FARMER
+  // /*
+  it('Testing smart contract function addFarmer() that allows a anyone to add farmer', async () => {
+    const supplyChain = await SupplyChain.deployed();
+
+    await supplyChain.addFarmer(originFarmerID);
+
+    const resultIsFarmer = await supplyChain.isFarmer.call(originFarmerID);
+
+    assert.isOk(true, resultIsFarmer);
+
+    console.log('resultIsFarmer', ':	', resultIsFarmer);
+  });
+  // */
+
+  // 12rd Test ---- ADD DISTRIBUTOR
+  // /*
+  it('Testing smart contract function addDistributor() that allows a anyone to add Distributor', async () => {
+    const supplyChain = await SupplyChain.deployed();
+
+    await supplyChain.addDistributor(distributorID);
+
+    const resultIsDistributor = await supplyChain.isDistributor.call(
+      distributorID
+    );
+
+    assert.isOk(true, resultIsDistributor);
+
+    console.log('resultIsDistributor', ':	', resultIsDistributor);
+  });
+  // */
+
+  // 13rd Test ---- ADD RETAILER
+  // /*
+  it('Testing smart contract function addRetailer() that allows a anyone to add Retailer', async () => {
+    const supplyChain = await SupplyChain.deployed();
+
+    await supplyChain.addRetailer(retailerID);
+
+    const resultIsRetailer = await supplyChain.isRetailer.call(retailerID);
+
+    assert.isOk(true, resultIsRetailer);
+
+    console.log('resultIsRetailer', ':	', resultIsRetailer);
+  });
+  // */
+
+  // 14rd Test ---- ADD CONSUMER
+  // /*
+  it('Testing smart contract function addConsumer() that allows a anyone to add Consumer', async () => {
+    const supplyChain = await SupplyChain.deployed();
+
+    await supplyChain.addConsumer(consumerID);
+
+    const resultIsConsumer = await supplyChain.isConsumer.call(consumerID);
+
+    assert.isOk(true, resultIsConsumer);
+
+    console.log('resultIsConsumer', ':	', resultIsConsumer);
+  });
+  // */
+
   // 1st Test --- HARVEST ITEM
 
   it('Testing smart contract function harvestItem() that allows a farmer to harvest coffee', async () => {
@@ -302,7 +365,9 @@ contract('SupplyChain', function(accounts) {
     });
 
     // Mark an item as Shipped by calling function shipItem()
-    await supplyChain.shipItem(upc);
+    await supplyChain.shipItem(upc, {
+      from: distributorID
+    });
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
@@ -503,68 +568,6 @@ contract('SupplyChain', function(accounts) {
       consumerID,
       'Error: Invalid item consumerID'
     );
-  });
-  // */
-
-  // 11rd Test ---- ADD FARMER
-  // /*
-  it('Testing smart contract function addFarmer() that allows a anyone to add farmer', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    await supplyChain.addFarmer(originFarmerID);
-
-    const resultIsFarmer = await supplyChain.isFarmer.call(originFarmerID);
-
-    assert.isOk(true, resultIsFarmer);
-
-    console.log('resultIsFarmer', ':	', resultIsFarmer);
-  });
-  // */
-
-  // 12rd Test ---- ADD DISTRIBUTOR
-  // /*
-  it('Testing smart contract function addDistributor() that allows a anyone to add Distributor', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    await supplyChain.addDistributor(distributorID);
-
-    const resultIsDistributor = await supplyChain.isDistributor.call(
-      distributorID
-    );
-
-    assert.isOk(true, resultIsDistributor);
-
-    console.log('resultIsDistributor', ':	', resultIsDistributor);
-  });
-  // */
-
-  // 13rd Test ---- ADD RETAILER
-  // /*
-  it('Testing smart contract function addRetailer() that allows a anyone to add Retailer', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    await supplyChain.addRetailer(retailerID);
-
-    const resultIsRetailer = await supplyChain.isRetailer.call(retailerID);
-
-    assert.isOk(true, resultIsRetailer);
-
-    console.log('resultIsRetailer', ':	', resultIsRetailer);
-  });
-  // */
-
-  // 14rd Test ---- ADD CONSUMER
-  // /*
-  it('Testing smart contract function addConsumer() that allows a anyone to add Consumer', async () => {
-    const supplyChain = await SupplyChain.deployed();
-
-    await supplyChain.addConsumer(consumerID);
-
-    const resultIsConsumer = await supplyChain.isConsumer.call(consumerID);
-
-    assert.isOk(true, resultIsConsumer);
-
-    console.log('resultIsConsumer', ':	', resultIsConsumer);
   });
   // */
 });
