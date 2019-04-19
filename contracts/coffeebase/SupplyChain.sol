@@ -1,9 +1,14 @@
 pragma solidity ^0.4.24;
 // Define a contract 'Supplychain'
 
-import "../coffeeaccesscontrol/DistributorRole.sol";
 
-contract SupplyChain is DistributorRole {
+
+import "../coffeeaccesscontrol/FarmerRole.sol";
+import "../coffeeaccesscontrol/DistributorRole.sol";
+import "../coffeeaccesscontrol/RetailerRole.sol";
+import "../coffeeaccesscontrol/ConsumerRole.sol";
+
+contract SupplyChain is FarmerRole,DistributorRole,RetailerRole,ConsumerRole {
 
 // Define 'owner'
 address owner;
@@ -17,7 +22,7 @@ uint  sku;
 // Define a public mapping 'items' that maps the UPC to an Item.
 mapping (uint => Item) items;
 
-uint paidValue;
+// uint paidValue;
 // Define a public mapping 'itemsHistory' that maps the UPC to an array of TxHash, 
 // that track its journey through the supply chain -- to be sent from DApp.
 
@@ -160,9 +165,8 @@ function kill() public {
 	}
 }
 
-function addDistributor(address distributorID) {
-	DistributorRole distributor=new DistributorRole();
-}
+ 
+
 /* 
 Harvested,  // 0
 Processed,  // 1
@@ -173,8 +177,14 @@ Shipped,    // 5
 Received,   // 6
 Purchased   // 7 
 */
-// Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-function harvestItem(uint _upc, address _originFarmerID, string _originFarmName, string _originFarmInformation, string  _originFarmLatitude, string  _originFarmLongitude, string  _productNotes) public 
+
+//  Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
+//  upc,originFarmerID,originFarmName,originFarmInformation,originFarmLatitude,originFarmLongitude,productNotes
+
+//  1,"0x018c2dabef4904ecbd7118350a0c54dbeae3549a","originFarmName","originFarmInformation","originFarmLatitude","originFarmLongitude","productNotes"
+
+
+function harvestItem(uint _upc, address _originFarmerID, string _originFarmName, string _originFarmInformation, string  _originFarmLatitude, string  _originFarmLongitude, string  _productNotes) onlyFarmer() public 
 {
 // Add the new item as part of Harvest
 
@@ -249,7 +259,7 @@ items[_upc].ownerID = msg.sender;
 items[_upc].distributorID = msg.sender;
 items[_upc].itemState = State.Sold;
 
-paidValue = msg.value;
+// paidValue = msg.value;
 
 // Transfer money to farmer
 msg.sender.transfer(_price);
@@ -355,8 +365,9 @@ function fetchItemBufferTwo(uint _upc) public view returns
 	uint    itemState,
 	address distributorID,
 	address retailerID,
-	address consumerID,
-	uint    paidValue
+	address consumerID
+	/* ,
+    uint    paidValue */
 	) 
 {
 // Assign values to the 9 parameters
@@ -372,7 +383,7 @@ retailerID = items[_upc].retailerID; //7
 
 consumerID = items[_upc].consumerID; //8
 
-paidValue = msg.value; //9
+// paidValue = msg.value; //9
 return 
 (
 	itemSKU,
@@ -383,29 +394,30 @@ return
 	itemState,
 	distributorID,
 	retailerID,
-	consumerID,
-	paidValue
+	consumerID
+	/* ,
+	paidValue */
 	);
 }
 
 // Define a function 'fetchItemBufferOne' that fetches the data
-function fetchMsg(uint _upc) public view returns 
+/* function fetchMsg(uint _upc) public view returns 
 (
 	address    msgSender,
 	uint    msgValue
-	) 
+) 
 {
 // Assign values to the 8 parameters
 msgSender = msg.sender;//0
 msgValue = msg.value;//1
-
-
+ 
+ 
 return 
 (
 	msgSender,
 	msgValue
-	);
-}
+);
+} */
 
 // event test_value(uint256 indexed value1);
 // uint256 value_test;

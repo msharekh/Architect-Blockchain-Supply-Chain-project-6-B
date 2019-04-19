@@ -17,11 +17,18 @@
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <style>
-      .form-group {
+      .col-md-4 > .form-group {
         border: 1px solid rgb(18, 41, 117);
         /* margin-bottom: 1px;
         margin-right: 1px; */
         width: 100%;
+      }
+      .col-md-12 > .form-group {
+        width: 100%;
+      }
+      .col-md-12 > .form-group > input[type='text'] {
+        width: 350px;
+        /* background-color: greenyellow; */
       }
     </style>
   </head>
@@ -33,55 +40,87 @@
       <p style="text-align: center;">
         Prove the authenticity of coffee using the Ethereum blockchain.
       </p>
+      <h2>Role Registeration</h2>
       <div class="row">
-        <div class="col-md-4">
-          <h2>Farmer Register</h2>
-          <div class="form-group">
-            <label for="usr">New Farmer ID:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="newFarmerID"
-              name="newFarmerID"
-              value="0x018c2dabef4904ecbd7118350a0c54dbeae3549a"
-              size="50"
-            />
+        <div class="col-md-8 form-inline">
+          <div class="col-md-12">
+            <!-- <h2>Farmer Register</h2> -->
+            <div class="form-group">
+              <label for="usr">New Farmer ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newFarmerID"
+                name="newFarmerID"
+                value="0x018c2dabef4904ecbd7118350a0c54dbeae3549a"
+                size="50"
+              />
+              <button type="button" class="btn btn-info" data-id="11">
+                Save
+              </button>
+            </div>
+            <!-- form-group -->
           </div>
-          <!-- form-group -->
-        </div>
-        <!-- col-md-4 -->
-        <div class="col-md-4">
-          <h2>Distributor Register</h2>
-          <div class="form-group">
-            <label for="usr">New Distributor ID:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="newDistributorID"
-              name="newDistributorID"
-              value="0x018c2dabef4904ecbd7118350a0c54dbeae3549a"
-              size="50"
-            />
+          <!-- col-md-12 -->
+          <div class="col-md-12">
+            <!-- <h2>Distributor Register</h2> -->
+            <div class="form-group">
+              <label for="usr">New Distributor ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newDistributorID"
+                name="newDistributorID"
+                value="0xce5144391b4ab80668965f2cc4f2cc102380ef0a"
+                size="50"
+              />
+              <button type="button" class="btn btn-info" data-id="12">
+                Save
+              </button>
+            </div>
+            <!-- form-group -->
           </div>
-          <!-- form-group -->
-        </div>
-        <!-- col-md-4 -->
-        <div class="col-md-4">
-          <h2>Retailer Register</h2>
-          <div class="form-group">
-            <label for="usr">New Retailer ID:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="newRetailerID"
-              name="newRetailerID"
-              value="0x018c2dabef4904ecbd7118350a0c54dbeae3549a"
-              size="50"
-            />
+          <!-- col-md-12 -->
+          <div class="col-md-12">
+            <!-- <h2>Retailer Register</h2> -->
+            <div class="form-group">
+              <label for="usr">New Retailer ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newRetailerID"
+                name="newRetailerID"
+                value="0x460c31107dd048e34971e57da2f99f659add4f02"
+                size="50"
+              />
+              <button type="button" class="btn btn-info" data-id="13">
+                Save
+              </button>
+            </div>
+            <!-- form-group -->
           </div>
-          <!-- form-group -->
+          <!-- col-md-12 -->
+          <div class="col-md-12">
+            <!-- <h2>Consumer Register</h2> -->
+            <div class="form-group">
+              <label for="usr">New Consumer ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newConsumerID"
+                name="newConsumerID"
+                value="0x460c31107dd048e34971e57da2f99f659add4f02"
+                size="50"
+              />
+              <button type="button" class="btn btn-info" data-id="14">
+                Save
+              </button>
+            </div>
+            <!-- form-group -->
+          </div>
+          <!-- col-md-12 -->
         </div>
-        <!-- col-md-4 -->
+        <!-- col-md-8 -->
       </div>
       <!-- row -->
       <div class="row">
