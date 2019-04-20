@@ -1,0 +1,16 @@
+Project 6 B, solution file   -   Mishal Alsharekh
+
+Deployed to Rinkeby:
+
+Transaction Hash:
+0x931915534cc51a77641d2179de3597be3eb060aee06da1bb519ac003a6053528 
+
+Contract 0xc5ac295e349aeF4774D3C8231A4E6bBF0836C983
+
+Address 0xfE6ADeAE9d237599dCb8D881efDb6a581c1f5317
+
+
+used versions:
+Truffle v4.1.14 - a development framework for Ethereum
+node 	v10.13.0
+web3	1.0.0-beta.52
