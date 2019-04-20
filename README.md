@@ -1,5 +1,4 @@
- 
-# Project6  - Architect-Blockchain-Supply-Chain-project 
+# Project6 - Architect-Blockchain-Supply-Chain-project
 
 In this project, we build a supplychain dapp that manage the coffee supplychain processes from farmer to consumer, This application is build usijng solidity, Truffle , web3
 
@@ -17,10 +16,9 @@ git clone https://github.com/msharekh/Architect-Blockchain-Supply-Chain-project-
 ```
 $ npm install -g truffle@4.1.15
 $ npm install --save truffle-hdwallet-provider
-
+$ npm build
 ```
 
- 
 ## functions:
 
 1. harvestItem
@@ -33,7 +31,3 @@ $ npm install --save truffle-hdwallet-provider
 8. purchaseItem
 
 9. Lookup item by upc
-
- 
-
- 
