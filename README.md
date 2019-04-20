@@ -31,3 +31,13 @@ $ npm build
 8. purchaseItem
 
 9. Lookup item by upc
+
+## Deployed to Rinkeby:
+
+#### Transaction Hash:
+
+0x931915534cc51a77641d2179de3597be3eb060aee06da1bb519ac003a6053528
+
+#### Contract
+
+0xc5ac295e349aeF4774D3C8231A4E6bBF0836C983
